@@ -1,3 +1,5 @@
+package no.nav.helse.sas
+
 import org.gradle.api.provider.Property
 
 interface SasDeployableExtension {

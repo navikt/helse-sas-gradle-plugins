@@ -1,3 +1,5 @@
+import no.nav.helse.sas.SasDeployableExtension
+
 plugins {
     id("org.jetbrains.kotlin.jvm")
     id("com.google.cloud.tools.jib")
