@@ -20,8 +20,8 @@ publishing {
         maven {
             url = uri("https://maven.pkg.github.com/navikt/sas-gradle-plugins")
             credentials {
-                username = System.getenv("GITHUB_USERNAME")
-                password = System.getenv("GITHUB_PASSWORD")
+                username = "token"
+                password = providers.environmentVariable("GITHUB_TOKEN").orNull!!
             }
         }
     }
