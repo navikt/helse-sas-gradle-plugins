@@ -18,10 +18,10 @@ kotlin {
 publishing {
     repositories {
         maven {
-            url = uri("https://maven.pkg.github.com/navikt/sas-gradle-plugins")
+            url = uri("https://maven.pkg.github.com/navikt/helse-sas-gradle-plugins")
             credentials {
                 username = "token"
-                password = providers.environmentVariable("GITHUB_TOKEN").orNull!!
+                password = providers.environmentVariable("GITHUB_TOKEN").orNull
             }
         }
     }
