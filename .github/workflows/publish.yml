@@ -1,0 +1,42 @@
+name: publish plugins
+on:
+  workflow_run:
+    workflows: ["build and test"]
+    branches: [main]
+    types:
+      - completed
+jobs:
+  publish:
+    name: publish plugins
+    # Kjører kun dersom 'build and test' gikk grønt
+    if: ${{ github.event.workflow_run.conclusion == 'success' }}
+    permissions:
+      packages: write
+      contents: read
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@9c091bb21b7c1c1d1991bb908d89e4e9dddfe3e0 # v7.0.0
+        with:
+          persist-credentials: false
+
+      - uses: actions/setup-java@03ad4de0992f5dab5e18fcb136590ce7c4a0ac95 # v5.6.0
+        with:
+          distribution: temurin
+          java-version: 21
+
+      - uses: gradle/actions/setup-gradle@3f131e8634966bd73d06cc69884922b02e6faf92 # v6.2.0
+
+      - name: Generer versjon
+        run: |
+          VERSION=$(TZ="Europe/Oslo" date +%Y%m%d.%H%M)
+          echo "VERSION=$VERSION" >> "$GITHUB_ENV"
+          echo "Publiserer versjon: $VERSION"
+
+      - name: Publiser artefakter
+        run: ./gradlew -Pversion="$VERSION" publish
+        env:
+          GITHUB_USERNAME: x-access-token
+          GITHUB_PASSWORD: ${{ secrets.GITHUB_TOKEN }}
+
+      - name: Oppsummering
+        run: echo "### Publiserte plugins med versjon \`$VERSION\`" >> "$GITHUB_STEP_SUMMARY"
