@@ -56,6 +56,10 @@ allprojects {
             // Løftes til nyeste patchede versjon på ktlint-konfigurasjonen.
             add("ktlint", "ch.qos.logback:logback-classic:1.5.38")
             add("ktlint", "ch.qos.logback:logback-core:1.5.38")
+
+            // Rapids & Rivers -> kafka-clients drar inn lz4-java <= 1.10.1 på runtimeClasspath
+            // (GHSA-xx22-p4ch-683r). Løftes til nyeste patchede versjon.
+            implementation("at.yawk.lz4:lz4-java:1.11.1")
         }
     }
 }

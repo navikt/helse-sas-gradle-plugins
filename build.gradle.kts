@@ -10,6 +10,10 @@ dependencies {
     implementation("com.google.cloud.tools:jib-gradle-plugin:3.5.4")
     implementation("com.fasterxml.jackson:jackson-bom:2.22.1") // Jib drar inn en gammel versjon ellers
     implementation("org.jlleitschuh.gradle:ktlint-gradle:14.2.0")
+
+    constraints {
+        implementation("org.apache.commons:commons-lang3:3.20.0")
+    }
 }
 
 kotlin {
