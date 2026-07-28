@@ -21,6 +21,12 @@ jobs:
       contents: read
       packages: write
     steps:
+      - name: Generer versjonsnummer
+        run: |
+          VERSION=$(TZ="Europe/Oslo" date +%Y%m%d.%H%M)
+          echo "VERSION=$VERSION" >> "$GITHUB_ENV"
+          echo "### Versjonsnummer $VERSION" >> $GITHUB_STEP_SUMMARY
+
       - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
         with:
           persist-credentials: false
@@ -35,4 +41,4 @@ jobs:
       - name: gradle build publish
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-        run: ./gradlew -Pversion="$(TZ="Europe/Oslo" date +%Y%m%d.%H%M)" build publish --build-cache
+        run: ./gradlew -Pversion="$VERSION" build publish --build-cache
