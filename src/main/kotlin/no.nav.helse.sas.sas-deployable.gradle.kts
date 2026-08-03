@@ -1,18 +1,8 @@
 import no.nav.helse.sas.SasDeployableExtension
 
 plugins {
-    id("org.jetbrains.kotlin.jvm")
+    id("no.nav.helse.sas.sas-kotlin")
     id("com.google.cloud.tools.jib")
-}
-
-dependencies {
-    testImplementation(kotlin("test"))
-    testImplementation(platform("org.junit:junit-bom:6.1.1"))
-    testImplementation("org.junit.jupiter:junit-jupiter")
-}
-
-kotlin {
-    jvmToolchain(25)
 }
 
 val sasDeployable = extensions.create<SasDeployableExtension>("sasDeployable")
@@ -53,17 +43,6 @@ afterEvaluate {
         outputs.file(imageNameFile)
         doLast {
             imageNameFile.get().asFile.writeText(targetImage)
-        }
-    }
-}
-
-tasks {
-    named<Test>("test") {
-        useJUnitPlatform()
-        testLogging {
-            events("skipped", "failed")
-            showStackTraces = true
-            exceptionFormat = org.gradle.api.tasks.testing.logging.TestExceptionFormat.FULL
         }
     }
 }
