@@ -36,6 +36,9 @@ dependencies {
         implementation("com.github.jknack:handlebars:4.5.3")
         implementation("at.yawk.lz4:lz4-java:1.11.1")
         implementation("org.apache.kafka:kafka-clients:4.1.2")
+        implementation("org.bouncycastle:bcprov-jdk18on:1.85")
+        implementation("org.bouncycastle:bcpkix-jdk18on:1.85")
+        implementation("org.bouncycastle:bcutil-jdk18on:1.85")
     }
 }
 
