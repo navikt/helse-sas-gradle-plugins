@@ -35,6 +35,7 @@ dependencies {
         implementation("ch.qos.logback:logback-classic:1.5.38")
         implementation("com.github.jknack:handlebars:4.5.3")
         implementation("at.yawk.lz4:lz4-java:1.11.1")
+        implementation("org.apache.kafka:kafka-clients:4.1.2")
     }
 }
 
