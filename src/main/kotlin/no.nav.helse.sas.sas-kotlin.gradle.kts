@@ -18,6 +18,7 @@ kotlin {
 
 dependencies {
     implementation(platform("io.ktor:ktor-bom:3.5.1"))
+    implementation(platform("io.micrometer:micrometer-bom:1.16.6"))
     implementation(platform("io.netty:netty-bom:4.2.16.Final"))
     implementation(platform("io.prometheus:prometheus-metrics-bom:1.8.0"))
     implementation(platform("tools.jackson:jackson-bom:3.2.1"))
