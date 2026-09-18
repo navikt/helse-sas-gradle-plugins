@@ -1,0 +1,38 @@
+# Alle versjoner som brukes av sas-pluginene samles her, slik at Dependabot kan holde dem oppdatert.
+# Dependabot leser kun build.gradle.kts, settings.gradle.kts og gradle/libs.versions.toml – den ser
+# ikke inn i precompiled script plugins under src/main/kotlin. Derfor genereres `no.nav.helse.sas.SasVersions`
+# fra dette katalogen (se build.gradle.kts), og pluginene refererer til konstantene der.
+
+[versions]
+bouncycastle = "1.85"
+jetty = "12.1.11"
+logback = "1.5.38"
+
+[libraries]
+# Bygging av selve pluginene
+jib-gradle-plugin = { module = "com.google.cloud.tools:jib-gradle-plugin", version = "3.5.4" }
+kotlin-gradle-plugin = { module = "org.jetbrains.kotlin:kotlin-gradle-plugin", version = "2.4.10" }
+ktlint-gradle = { module = "org.jlleitschuh.gradle:ktlint-gradle", version = "14.2.0" }
+commons-lang3 = { module = "org.apache.commons:commons-lang3", version = "3.20.0" }
+
+# BOM-er som eksponeres til moduler via sas-kotlin
+jackson2-bom = { module = "com.fasterxml.jackson:jackson-bom", version = "2.22.1" }
+jackson3-bom = { module = "tools.jackson:jackson-bom", version = "3.2.1" }
+jetty-bom = { module = "org.eclipse.jetty:jetty-bom", version.ref = "jetty" }
+jetty-ee10-bom = { module = "org.eclipse.jetty.ee10:jetty-ee10-bom", version.ref = "jetty" }
+junit-bom = { module = "org.junit:junit-bom", version = "6.1.2" }
+ktor-bom = { module = "io.ktor:ktor-bom", version = "3.5.2" }
+micrometer-bom = { module = "io.micrometer:micrometer-bom", version = "1.16.6" }
+netty-bom = { module = "io.netty:netty-bom", version = "4.2.16.Final" }
+prometheus-metrics-bom = { module = "io.prometheus:prometheus-metrics-bom", version = "1.8.0" }
+
+# Dependency constraints
+bcpkix = { module = "org.bouncycastle:bcpkix-jdk18on", version.ref = "bouncycastle" }
+bcprov = { module = "org.bouncycastle:bcprov-jdk18on", version.ref = "bouncycastle" }
+bcutil = { module = "org.bouncycastle:bcutil-jdk18on", version.ref = "bouncycastle" }
+handlebars = { module = "com.github.jknack:handlebars", version = "4.5.3" }
+kafka-clients = { module = "org.apache.kafka:kafka-clients", version = "4.1.2" }
+logback-classic = { module = "ch.qos.logback:logback-classic", version.ref = "logback" }
+logback-core = { module = "ch.qos.logback:logback-core", version.ref = "logback" }
+lz4-java = { module = "at.yawk.lz4:lz4-java", version = "1.11.1" }
+opentelemetry-api = { module = "io.opentelemetry:opentelemetry-api", version = "1.64.0" }

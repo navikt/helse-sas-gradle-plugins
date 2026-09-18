@@ -1,3 +1,5 @@
+import no.nav.helse.sas.SasVersions
+
 plugins {
     id("no.nav.helse.sas.sas-module")
     id("org.jetbrains.kotlin.jvm")
@@ -17,29 +19,29 @@ kotlin {
 }
 
 dependencies {
-    implementation(platform("io.ktor:ktor-bom:3.5.1"))
-    implementation(platform("io.micrometer:micrometer-bom:1.16.6"))
-    implementation(platform("io.netty:netty-bom:4.2.16.Final"))
-    implementation(platform("io.prometheus:prometheus-metrics-bom:1.8.0"))
-    implementation(platform("tools.jackson:jackson-bom:3.2.1"))
-    implementation(platform("com.fasterxml.jackson:jackson-bom:2.22.1"))
-    implementation(platform("org.eclipse.jetty:jetty-bom:12.1.11"))
-    implementation(platform("org.eclipse.jetty.ee10:jetty-ee10-bom:12.1.11"))
+    implementation(platform(SasVersions.KTOR_BOM))
+    implementation(platform(SasVersions.MICROMETER_BOM))
+    implementation(platform(SasVersions.NETTY_BOM))
+    implementation(platform(SasVersions.PROMETHEUS_METRICS_BOM))
+    implementation(platform(SasVersions.JACKSON3_BOM))
+    implementation(platform(SasVersions.JACKSON2_BOM))
+    implementation(platform(SasVersions.JETTY_BOM))
+    implementation(platform(SasVersions.JETTY_EE10_BOM))
 
-    testImplementation(platform("org.junit:junit-bom:6.1.2"))
+    testImplementation(platform(SasVersions.JUNIT_BOM))
     testImplementation("org.junit.jupiter:junit-jupiter")
     testImplementation(kotlin("test"))
 
     constraints {
-        implementation("io.opentelemetry:opentelemetry-api:1.64.0")
-        implementation("ch.qos.logback:logback-core:1.5.38")
-        implementation("ch.qos.logback:logback-classic:1.5.38")
-        implementation("com.github.jknack:handlebars:4.5.3")
-        implementation("at.yawk.lz4:lz4-java:1.11.1")
-        implementation("org.apache.kafka:kafka-clients:4.1.2")
-        implementation("org.bouncycastle:bcprov-jdk18on:1.85")
-        implementation("org.bouncycastle:bcpkix-jdk18on:1.85")
-        implementation("org.bouncycastle:bcutil-jdk18on:1.85")
+        implementation(SasVersions.OPENTELEMETRY_API)
+        implementation(SasVersions.LOGBACK_CORE)
+        implementation(SasVersions.LOGBACK_CLASSIC)
+        implementation(SasVersions.HANDLEBARS)
+        implementation(SasVersions.LZ4_JAVA)
+        implementation(SasVersions.KAFKA_CLIENTS)
+        implementation(SasVersions.BCPROV)
+        implementation(SasVersions.BCPKIX)
+        implementation(SasVersions.BCUTIL)
     }
 }
 
