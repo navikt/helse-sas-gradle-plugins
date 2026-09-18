@@ -6,13 +6,13 @@ plugins {
 group = "no.nav.helse.sas"
 
 dependencies {
-    implementation(libs.kotlin.gradle.plugin)
-    implementation(libs.jib.gradle.plugin)
-    implementation(libs.jackson2.bom) // Jib drar inn en gammel versjon ellers
-    implementation(libs.ktlint.gradle)
+    implementation("org.jetbrains.kotlin:kotlin-gradle-plugin:2.4.10")
+    implementation("com.google.cloud.tools:jib-gradle-plugin:3.5.4")
+    implementation("com.fasterxml.jackson:jackson-bom:2.22.1") // Jib drar inn en gammel versjon ellers
+    implementation("org.jlleitschuh.gradle:ktlint-gradle:14.2.0")
 
     constraints {
-        implementation(libs.commons.lang3)
+        implementation("org.apache.commons:commons-lang3:3.20.0")
     }
 }
 

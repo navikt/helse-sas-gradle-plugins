@@ -1,7 +1,9 @@
-# Alle versjoner som brukes av sas-pluginene samles her, slik at Dependabot kan holde dem oppdatert.
-# Dependabot leser kun build.gradle.kts, settings.gradle.kts og gradle/libs.versions.toml – den ser
-# ikke inn i precompiled script plugins under src/main/kotlin. Derfor genereres `no.nav.helse.sas.SasVersions`
-# fra dette katalogen (se build.gradle.kts), og pluginene refererer til konstantene der.
+# Versjonene som sas-pluginene påtvinger modulene sine samles her, slik at Dependabot kan holde dem
+# oppdatert. Dependabot leser kun build.gradle.kts, settings.gradle.kts og gradle/libs.versions.toml –
+# den ser ikke inn i precompiled script plugins under src/main/kotlin. Derfor genereres
+# `no.nav.helse.sas.SasVersions` fra denne katalogen (se build.gradle.kts), og pluginene refererer til
+# konstantene der. Versjonene som brukes til å bygge selve pluginene står i build.gradle.kts, der
+# Dependabot allerede oppdaterer dem.
 
 [versions]
 bouncycastle = "1.85"
@@ -9,12 +11,6 @@ jetty = "12.1.11"
 logback = "1.5.38"
 
 [libraries]
-# Bygging av selve pluginene
-jib-gradle-plugin = { module = "com.google.cloud.tools:jib-gradle-plugin", version = "3.5.4" }
-kotlin-gradle-plugin = { module = "org.jetbrains.kotlin:kotlin-gradle-plugin", version = "2.4.10" }
-ktlint-gradle = { module = "org.jlleitschuh.gradle:ktlint-gradle", version = "14.2.0" }
-commons-lang3 = { module = "org.apache.commons:commons-lang3", version = "3.20.0" }
-
 # BOM-er som eksponeres til moduler via sas-kotlin
 jackson2-bom = { module = "com.fasterxml.jackson:jackson-bom", version = "2.22.1" }
 jackson3-bom = { module = "tools.jackson:jackson-bom", version = "3.2.1" }
