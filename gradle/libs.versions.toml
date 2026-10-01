@@ -11,7 +11,7 @@ jetty = "12.1.13"
 logback = "1.6.3"
 
 [libraries]
-# BOM-er som eksponeres til moduler via no.nav.sykepenger.gradleplugins.kotlin
+# BOM-er som eksponeres til moduler via no.nav.sykepenger.kotlin
 jackson2-bom = { module = "com.fasterxml.jackson:jackson-bom", version = "2.22.3" }
 jackson3-bom = { module = "tools.jackson:jackson-bom", version = "3.2.3" }
 jetty-bom = { module = "org.eclipse.jetty:jetty-bom", version.ref = "jetty" }

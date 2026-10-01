@@ -1,7 +1,7 @@
 import no.nav.sykepenger.gradleplugins.SykepengerVersions
 
 plugins {
-    id("no.nav.sykepenger.gradleplugins.module")
+    id("no.nav.sykepenger.module")
     id("org.jetbrains.kotlin.jvm")
 }
 

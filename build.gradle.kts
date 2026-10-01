@@ -3,7 +3,7 @@ plugins {
     `maven-publish`
 }
 
-group = "no.nav.sykepenger.gradleplugins"
+group = "no.nav.sykepenger"
 
 dependencies {
     implementation("org.jetbrains.kotlin:kotlin-gradle-plugin:2.4.20")
@@ -65,7 +65,7 @@ kotlin.sourceSets.named("main") {
 publishing {
     repositories {
         maven {
-            url = uri("https://maven.pkg.github.com/navikt/helse-sas-gradle-plugins")
+            url = uri("https://maven.pkg.github.com/navikt/sykepenger-gradle-plugins")
             credentials {
                 username = "token"
                 password = providers.environmentVariable("GITHUB_TOKEN").orNull

@@ -1,7 +1,7 @@
 import no.nav.sykepenger.gradleplugins.SykepengerDeployableExtension
 
 plugins {
-    id("no.nav.sykepenger.gradleplugins.kotlin")
+    id("no.nav.sykepenger.kotlin")
     id("com.google.cloud.tools.jib")
 }
 
