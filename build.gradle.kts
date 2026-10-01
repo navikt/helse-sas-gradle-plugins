@@ -3,7 +3,7 @@ plugins {
     `maven-publish`
 }
 
-group = "no.nav.helse.sas"
+group = "no.nav.sykepenger.gradleplugins"
 
 dependencies {
     implementation("org.jetbrains.kotlin:kotlin-gradle-plugin:2.4.20")
@@ -32,23 +32,23 @@ val libraryNotations =
         }
     }
 
-val generatedVersionsDir = layout.buildDirectory.dir("generated/sas-versions/kotlin")
+val generatedVersionsDir = layout.buildDirectory.dir("generated/sykepenger-versions/kotlin")
 
-val generateSasVersions =
-    tasks.register("generateSasVersions") {
+val generateSykepengerVersions =
+    tasks.register("generateSykepengerVersions") {
         val notations = libraryNotations
         val outputDir = generatedVersionsDir
         inputs.property("notations", notations)
         outputs.dir(outputDir)
         doLast {
-            val packageDir = outputDir.get().asFile.resolve("no/nav/helse/sas")
+            val packageDir = outputDir.get().asFile.resolve("no/nav/sykepenger/gradleplugins")
             packageDir.mkdirs()
-            packageDir.resolve("SasVersions.kt").writeText(
+            packageDir.resolve("SykepengerVersions.kt").writeText(
                 buildString {
-                    appendLine("// Generert fra gradle/libs.versions.toml av tasken `generateSasVersions`. Ikke rediger.")
-                    appendLine("package no.nav.helse.sas")
+                    appendLine("// Generert fra gradle/libs.versions.toml av tasken `generateSykepengerVersions`. Ikke rediger.")
+                    appendLine("package no.nav.sykepenger.gradleplugins")
                     appendLine()
-                    appendLine("object SasVersions {")
+                    appendLine("object SykepengerVersions {")
                     notations.toSortedMap().forEach { (constantName, notation) ->
                         appendLine("""    const val $constantName = "$notation"""")
                     }
@@ -59,7 +59,7 @@ val generateSasVersions =
     }
 
 kotlin.sourceSets.named("main") {
-    kotlin.srcDir(generateSasVersions)
+    kotlin.srcDir(generateSykepengerVersions)
 }
 
 publishing {

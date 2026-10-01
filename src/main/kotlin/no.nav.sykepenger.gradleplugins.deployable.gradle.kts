@@ -1,12 +1,12 @@
-import no.nav.helse.sas.SasDeployableExtension
+import no.nav.sykepenger.gradleplugins.SykepengerDeployableExtension
 
 plugins {
-    id("no.nav.helse.sas.sas-kotlin")
+    id("no.nav.sykepenger.gradleplugins.kotlin")
     id("com.google.cloud.tools.jib")
 }
 
-val sasDeployable = extensions.create<SasDeployableExtension>("sasDeployable")
-sasDeployable.imageName.convention(rootProject.name)
+val sykepengerDeployable = extensions.create<SykepengerDeployableExtension>("sykepengerDeployable")
+sykepengerDeployable.imageName.convention(rootProject.name)
 
 jib {
     from {
@@ -19,17 +19,17 @@ jib {
     }
 }
 
-// Verdiene fra `sasDeployable`-blokken er først tilgjengelige etter at modulen er evaluert.
+// Verdiene fra `sykepengerDeployable`-blokken er først tilgjengelige etter at modulen er evaluert.
 afterEvaluate {
     val registry = providers.gradleProperty("image.registry").orNull
     val tag = providers.gradleProperty("image.tag").orNull
-    val targetImage = registry?.let { "$it/" }.orEmpty() + sasDeployable.imageName.get() + tag?.let { ":$it" }.orEmpty()
+    val targetImage = registry?.let { "$it/" }.orEmpty() + sykepengerDeployable.imageName.get() + tag?.let { ":$it" }.orEmpty()
     configure<com.google.cloud.tools.jib.gradle.JibExtension> {
         to {
             image = targetImage
         }
         container {
-            mainClass = sasDeployable.mainClass.get()
+            mainClass = sykepengerDeployable.mainClass.get()
         }
     }
 

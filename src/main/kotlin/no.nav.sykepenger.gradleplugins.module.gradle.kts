@@ -1,4 +1,4 @@
-import no.nav.helse.sas.SasVersions
+import no.nav.sykepenger.gradleplugins.SykepengerVersions
 
 plugins {
     base
@@ -17,8 +17,8 @@ dependencies {
         // ktlint-pluginen drar inn logback-classic 1.3.14 -> logback-core med flere sårbarheter
         // (deserialisering av utrygg data, SSRF, EL-injection, arbitrær kodeeksekvering).
         // Løftes til nyeste patchede versjon på ktlint-konfigurasjonen.
-        add("ktlint", SasVersions.LOGBACK_CLASSIC)
-        add("ktlint", SasVersions.LOGBACK_CORE)
+        add("ktlint", SykepengerVersions.LOGBACK_CLASSIC)
+        add("ktlint", SykepengerVersions.LOGBACK_CORE)
     }
 }
 

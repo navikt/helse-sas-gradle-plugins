@@ -1,0 +1,57 @@
+import no.nav.sykepenger.gradleplugins.SykepengerVersions
+
+plugins {
+    id("no.nav.sykepenger.gradleplugins.module")
+    id("org.jetbrains.kotlin.jvm")
+}
+
+plugins.withId("java-test-fixtures") {
+    configurations.named("testFixturesImplementation") {
+        extendsFrom(configurations.named("implementation").get())
+    }
+    configurations.named("testImplementation") {
+        extendsFrom(configurations.named("testFixturesImplementation").get())
+    }
+}
+
+kotlin {
+    jvmToolchain(25)
+}
+
+dependencies {
+    implementation(platform(SykepengerVersions.KTOR_BOM))
+    implementation(platform(SykepengerVersions.MICROMETER_BOM))
+    implementation(platform(SykepengerVersions.NETTY_BOM))
+    implementation(platform(SykepengerVersions.PROMETHEUS_METRICS_BOM))
+    implementation(platform(SykepengerVersions.JACKSON3_BOM))
+    implementation(platform(SykepengerVersions.JACKSON2_BOM))
+    implementation(platform(SykepengerVersions.JETTY_BOM))
+    implementation(platform(SykepengerVersions.JETTY_EE10_BOM))
+
+    testImplementation(platform(SykepengerVersions.JUNIT_BOM))
+    testImplementation("org.junit.jupiter:junit-jupiter")
+    testImplementation(kotlin("test"))
+
+    constraints {
+        implementation(SykepengerVersions.OPENTELEMETRY_API)
+        implementation(SykepengerVersions.LOGBACK_CORE)
+        implementation(SykepengerVersions.LOGBACK_CLASSIC)
+        implementation(SykepengerVersions.HANDLEBARS)
+        implementation(SykepengerVersions.LZ4_JAVA)
+        implementation(SykepengerVersions.KAFKA_CLIENTS)
+        implementation(SykepengerVersions.BCPROV)
+        implementation(SykepengerVersions.BCPKIX)
+        implementation(SykepengerVersions.BCUTIL)
+    }
+}
+
+tasks {
+    named<Test>("test") {
+        useJUnitPlatform()
+        testLogging {
+            events("skipped", "failed")
+            showStackTraces = true
+            exceptionFormat = org.gradle.api.tasks.testing.logging.TestExceptionFormat.FULL
+        }
+    }
+}
